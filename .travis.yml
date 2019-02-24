@@ -26,6 +26,6 @@ before_install:
     - eval "$(perl -Mlocal::lib=$HOME/perl_modules)"
 install:
     - cpanm --quiet --skip-satisfied Dist::Zilla Pod::Weaver::Section::Support Perl::Critic Perl::Tidy Test::Code::TidyAll
-    - cpanm --quiet --skip-satisfied Digest File::Find::Object
+    - cpanm --quiet --skip-satisfied Digest File::Find::Object IO::All Test::Differences
 script:
     - prove tests/*.t
