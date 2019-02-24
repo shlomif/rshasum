@@ -28,4 +28,4 @@ install:
     - cpanm --quiet --skip-satisfied Dist::Zilla Pod::Weaver::Section::Support Perl::Critic Perl::Tidy Test::Code::TidyAll
     - cpanm --quiet --skip-satisfied Digest File::Find::Object
 script:
-    - prove t/*.t
+    - prove tests/*.t
