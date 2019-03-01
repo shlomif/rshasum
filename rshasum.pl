@@ -1,4 +1,3 @@
-## Please see file perltidy.ERR
 #!/usr/bin/env perl
 #
 # Copyright (C) 2018 Shlomi Fish <shlomif@cpan.org>
