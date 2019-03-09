@@ -29,6 +29,7 @@ while ( my $r = $ff->next_obj )
         open my $fh, '<', $path;
         binmode $fh;
         $d->addfile($fh);
+        close $fh;
         my $s = $d->hexdigest . '  ' . $path . "\n";
         print $s;
         $t->add($s);
