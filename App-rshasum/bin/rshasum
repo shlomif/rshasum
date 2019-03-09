@@ -1,0 +1,9 @@
+#!/usr/bin/env perl
+# PODNAME: rshasum
+
+use strict;
+use warnings;
+
+use App::rshasum ();
+
+App::rshasum->run;
