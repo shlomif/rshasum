@@ -1,4 +1,7 @@
 Revision history for App-rshasum
 
+0.0.2       2019-03-09
+    - Improve the error handling and docs.
+
 0.0.1       2019-03-09
     - First version, released on an unsuspecting world
