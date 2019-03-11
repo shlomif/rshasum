@@ -23,8 +23,8 @@ sub _worker
         if ( $r->is_file )
         {
             my $d    = Digest->new($digest);
-            my $path = $r->path;
-            open my $fh, '<', $path;
+            my $path = join '/', @{ $r->full_components };
+            open my $fh, '<', $r->path;
             binmode $fh;
             $d->addfile($fh);
             close $fh;
