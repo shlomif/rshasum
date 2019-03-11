@@ -8,15 +8,12 @@ use Digest             ();
 
 use Getopt::Long qw/ GetOptions /;
 
-sub run
+sub _worker
 {
-    my $digest;
-    GetOptions( 'digest=s' => \$digest, )
-        or die "foo $!";
-    if ( not defined($digest) )
-    {
-        die "Please give a --digest=[digest] argument.";
-    }
+    my ( $self, $args ) = @_;
+
+    my $digest    = $args->{digest};
+    my $output_cb = $args->{output_cb};
 
     my $t = Digest->new($digest);
 
@@ -32,12 +29,32 @@ sub run
             $d->addfile($fh);
             close $fh;
             my $s = $d->hexdigest . '  ' . $path . "\n";
+            $output_cb->( { str => $s } );
             print $s;
             $t->add($s);
         }
     }
     my $s = $t->hexdigest . '  ' . "-" . "\n";
-    print $s;
+    $output_cb->( { str => $s } );
+
+    return;
+}
+
+sub run
+{
+    my $digest;
+    GetOptions( 'digest=s' => \$digest, )
+        or die "foo $!";
+    if ( not defined($digest) )
+    {
+        die "Please give a --digest=[digest] argument.";
+    }
+    return shift()->_worker(
+        {
+            digest    => $digest,
+            output_cb => sub { print shift()->{str}; }
+        }
+    );
 }
 
 1;
