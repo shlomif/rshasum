@@ -30,7 +30,6 @@ sub _worker
             close $fh;
             my $s = $d->hexdigest . '  ' . $path . "\n";
             $output_cb->( { str => $s } );
-            print $s;
             $t->add($s);
         }
     }
