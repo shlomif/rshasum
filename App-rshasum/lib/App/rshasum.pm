@@ -13,13 +13,14 @@ sub _worker
 {
     my ( $self, $args ) = @_;
 
-    my $digest    = $args->{digest};
-    my $output_cb = $args->{output_cb};
-    my @prunes    = @{ $args->{prune_re} || [] };
+    my $digest     = $args->{digest};
+    my $output_cb  = $args->{output_cb};
+    my @prunes     = @{ $args->{prune_re} || [] };
+    my $start_path = ( $args->{start_path} // "." );
 
     my $t = Digest->new($digest);
 
-    my $ff = File::Find::Object->new( {}, "." );
+    my $ff = File::Find::Object->new( {}, $start_path );
 FILES:
     while ( my $r = $ff->next_obj )
     {
@@ -54,17 +55,22 @@ sub run
 {
     my $digest;
     my @skips;
-    GetOptions( 'digest=s' => \$digest, 'skip=s' => \@skips, )
-        or die "foo $!";
+    my $start_path = '.';
+    GetOptions(
+        'digest=s'     => \$digest,
+        'skip=s'       => \@skips,
+        'start-path=s' => \$start_path,
+    ) or die "foo $!";
     if ( not defined($digest) )
     {
         die "Please give a --digest=[digest] argument.";
     }
     return shift()->_worker(
         {
-            digest    => $digest,
-            output_cb => sub { print shift()->{str}; },
-            prune_re  => ( \@skips ),
+            digest     => $digest,
+            output_cb  => sub { print shift()->{str}; },
+            prune_re   => ( \@skips ),
+            start_path => $start_path,
         }
     );
 }
@@ -79,6 +85,7 @@ App::rshasum - recursive shasum.
 
     rshasum --digest=SHA-256
     rshasum --digest=SHA-256 --skip='\.sw[a-zA-Z]*\z' --skip='~\z'
+    rshasum --digest=SHA-256 --start-path='/home/random-j-user'
 
 =head1 METHODS
 
