@@ -87,6 +87,33 @@ App::rshasum - recursive shasum.
     rshasum --digest=SHA-256 --skip='\.sw[a-zA-Z]*\z' --skip='~\z'
     rshasum --digest=SHA-256 --start-path='/home/random-j-user'
 
+=head1 DESCRIPTION
+
+A recursive digest calculator that prints digests for all files
+in a directory tree, as well as a total, summary digest of the output.
+
+=head1 FLAGS
+
+=head2 --digest
+
+The digest algorithm to use. Required. E.g:
+
+    --digest=SHA-256
+    --digest=SHA-512
+    --digest=MD5
+
+=head2 --skip
+
+Perl 5 regexes which when matched against the relative path,
+skips and prunes them.
+
+Can be specified more than one time.
+
+=head2 --start-path
+
+The start path for the traversal. Defaults to "." (the
+current working directory).
+
 =head1 METHODS
 
 =head2 run
