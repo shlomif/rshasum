@@ -1,5 +1,9 @@
 Revision history for App-rshasum
 
+0.6.3       2020-08-16
+    - Handle open() failures on files (and subsequent binmode exception)
+    more gracefully.
+
 0.6.2       2020-08-16
     - Grammar corrections in the documentation.
     - Precompile --skip regexes using qr/$_/ .

@@ -36,9 +36,14 @@ FILES:
         }
         if ( $r->is_file )
         {
-            my $d = Digest->new($digest);
-            open my $fh, '<', $r->path;
+            my $fh;
+            if ( not( open $fh, '<', $r->path ) )
+            {
+                warn "Could not open @{[$r->path]}; skipping";
+                next FILES;
+            }
             binmode $fh;
+            my $d = Digest->new($digest);
             $d->addfile($fh);
             close $fh;
             my $s = $d->hexdigest . '  ' . $path . "\n";
