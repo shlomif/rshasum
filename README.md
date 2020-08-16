@@ -1,40 +1,126 @@
-rshasum is a recursive SHA sum program.
+# NAME
 
-### Usage
+App::rshasum - recursive shasum.
 
-A SHA algorithm may be specified with the `-a` flag; valid algorithms
-are 1, 256, 384, and 512; these select SHA-1, SHA-256, SHA-384, and
-SHA-512, respectively. The default is SHA-256.
+# VERSION
 
-Typically, hidden (dot) files are skipped. For example, given the
-following directory tree
-```
-	testdir/
-	├── .hidden
-	└── file
-```
-the `.hidden` file will not be hashed. The `-d` flag (for dotfiles)
-will cause `rshasum` to hash these files.
+version 0.6.4
 
-To compare a digest file, the `-c` flag should be used. In this
-case, the file arguments are taken to be files containing digests
-and filenames. While it can match the standard `shasum` format for
-text files, it will not recognise portable or binary file formats.
-It will also recognise the OpenBSD `sha` digest utilities, provided
-they were called in reverse format (ex. `sha1 -r`).
+# SYNOPSIS
 
-### LICENSE
+    rshasum --digest=SHA-256
+    rshasum --digest=SHA-256 --skip='\.sw[a-zA-Z]*\z' --skip='~\z'
+    rshasum --digest=SHA-256 --start-path='/home/random-j-user'
 
-> Copyright (c) 2014 Kyle Isom <kyle@tyrfingr.is>
-> 
-> Permission to use, copy, modify, and distribute this software for any
-> purpose with or without fee is hereby granted, provided that the above 
-> copyright notice and this permission notice appear in all copies.
-> 
-> THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-> WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-> MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-> ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-> WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-> ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-> OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. 
+# DESCRIPTION
+
+A recursive digest calculator that prints digests for all files
+in a directory tree, as well as a total, summary, digest of the output.
+
+# FLAGS
+
+## --digest
+
+The digest algorithm to use. Required. E.g:
+
+    --digest=SHA-256
+    --digest=SHA-512
+    --digest=MD5
+
+## --skip
+
+Perl 5 regexes which when matched against the relative paths,
+skip and prune them.
+
+Can be specified more than one time.
+
+## --start-path
+
+The start path for the traversal. Defaults to "." (the
+current working directory).
+
+# METHODS
+
+## run
+
+Runs the app.
+
+# SUPPORT
+
+## Websites
+
+The following websites have more information about this module, and may be of help to you. As always,
+in addition to those websites please use your favorite search engine to discover more resources.
+
+- MetaCPAN
+
+    A modern, open-source CPAN search engine, useful to view POD in HTML format.
+
+    [https://metacpan.org/release/App-rshasum](https://metacpan.org/release/App-rshasum)
+
+- RT: CPAN's Bug Tracker
+
+    The RT ( Request Tracker ) website is the default bug/issue tracking system for CPAN.
+
+    [https://rt.cpan.org/Public/Dist/Display.html?Name=App-rshasum](https://rt.cpan.org/Public/Dist/Display.html?Name=App-rshasum)
+
+- CPANTS
+
+    The CPANTS is a website that analyzes the Kwalitee ( code metrics ) of a distribution.
+
+    [http://cpants.cpanauthors.org/dist/App-rshasum](http://cpants.cpanauthors.org/dist/App-rshasum)
+
+- CPAN Testers
+
+    The CPAN Testers is a network of smoke testers who run automated tests on uploaded CPAN distributions.
+
+    [http://www.cpantesters.org/distro/A/App-rshasum](http://www.cpantesters.org/distro/A/App-rshasum)
+
+- CPAN Testers Matrix
+
+    The CPAN Testers Matrix is a website that provides a visual overview of the test results for a distribution on various Perls/platforms.
+
+    [http://matrix.cpantesters.org/?dist=App-rshasum](http://matrix.cpantesters.org/?dist=App-rshasum)
+
+- CPAN Testers Dependencies
+
+    The CPAN Testers Dependencies is a website that shows a chart of the test results of all dependencies for a distribution.
+
+    [http://deps.cpantesters.org/?module=App::rshasum](http://deps.cpantesters.org/?module=App::rshasum)
+
+## Bugs / Feature Requests
+
+Please report any bugs or feature requests by email to `bug-app-rshasum at rt.cpan.org`, or through
+the web interface at [https://rt.cpan.org/Public/Bug/Report.html?Queue=App-rshasum](https://rt.cpan.org/Public/Bug/Report.html?Queue=App-rshasum). You will be automatically notified of any
+progress on the request by the system.
+
+## Source Code
+
+The code is open to the world, and available for you to hack on. Please feel free to browse it and play
+with it, or whatever. If you want to contribute patches, please send me a diff or prod me to pull
+from your repository :)
+
+[https://github.com/shlomif/rshasum](https://github.com/shlomif/rshasum)
+
+    git clone https://github.com/shlomif/rshasum.git
+
+# AUTHOR
+
+Shlomi Fish <shlomif@cpan.org>
+
+# BUGS
+
+Please report any bugs or feature requests on the bugtracker website
+[https://github.com/shlomif/app-rshasum/issues](https://github.com/shlomif/app-rshasum/issues)
+
+When submitting a bug or request, please include a test-file or a
+patch to an existing test-file that illustrates the bug or desired
+feature.
+
+# COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2019 by Shlomi Fish.
+
+This is free software, licensed under:
+
+    The MIT (X11) License
