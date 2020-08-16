@@ -1,5 +1,10 @@
 Revision history for App-rshasum
 
+0.8.0       2020-08-16
+    - Add [ReadmeMarkdownFromPod]
+    - Add "SEE ALSO" section.
+    - Add whitespace in a warning.
+
 0.6.4       2020-08-16
     - Avoid accepting leftover non-flag command line arguments
         - Instead of --start

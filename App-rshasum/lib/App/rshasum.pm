@@ -39,7 +39,7 @@ FILES:
             my $fh;
             if ( not( open $fh, '<', $r->path ) )
             {
-                warn "Could not open @{[$r->path]}; skipping";
+                warn "Could not open @{[$r->path]} ; skipping";
                 next FILES;
             }
             binmode $fh;
