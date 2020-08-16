@@ -16,7 +16,7 @@ sub _worker
 
     my $digest     = $args->{digest};
     my $output_cb  = $args->{output_cb};
-    my @prunes     = @{ $args->{prune_re} || [] };
+    my @prunes     = ( map { qr/$_/ } @{ $args->{prune_re} || [] } );
     my $start_path = ( $args->{start_path} // "." );
 
     my $t = Digest->new($digest);
@@ -91,7 +91,7 @@ App::rshasum - recursive shasum.
 =head1 DESCRIPTION
 
 A recursive digest calculator that prints digests for all files
-in a directory tree, as well as a total, summary digest of the output.
+in a directory tree, as well as a total, summary, digest of the output.
 
 =head1 FLAGS
 
@@ -105,8 +105,8 @@ The digest algorithm to use. Required. E.g:
 
 =head2 --skip
 
-Perl 5 regexes which when matched against the relative path,
-skips and prunes them.
+Perl 5 regexes which when matched against the relative paths,
+skip and prune them.
 
 Can be specified more than one time.
 
