@@ -1,5 +1,9 @@
 Revision history for App-rshasum
 
+0.6.4       2020-08-16
+    - Avoid accepting leftover non-flag command line arguments
+        - Instead of --start
+
 0.6.3       2020-08-16
     - Handle open() failures on files (and subsequent binmode exception)
     more gracefully.

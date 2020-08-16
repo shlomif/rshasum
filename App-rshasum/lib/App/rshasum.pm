@@ -66,10 +66,15 @@ sub run
         'digest=s'     => \$digest,
         'skip=s'       => \@skips,
         'start-path=s' => \$start_path,
-    ) or die "foo $!";
+    ) or die "Unknown flags $!";
     if ( not defined($digest) )
     {
         die "Please give a --digest=[digest] argument.";
+    }
+    if (@ARGV)
+    {
+        die
+qq#Leftover arguments "@ARGV" in the command line. (Did you intend to use --start-path ?)#;
     }
     return shift()->_worker(
         {
