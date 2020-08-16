@@ -131,4 +131,15 @@ current working directory).
 
 Runs the app.
 
+=head1 SEE ALSO
+
+L<https://github.com/rhash/RHash> - "recursive hash". Seems to emit the
+tree in an unpredictable, not-always-sorted, order.
+
+L<https://www.shlomifish.org/open-source/projects/File-Dir-Dumper/> - also
+on CPAN. Dumps metadata and supports caching the digests.
+
+L<https://github.com/gokyle/rshasum> - written in golang, but slurps
+entire files into memory (see L<https://github.com/gokyle/rshasum/issues/1> ).
+
 =cut

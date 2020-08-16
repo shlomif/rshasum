@@ -45,6 +45,17 @@ current working directory).
 
 Runs the app.
 
+# SEE ALSO
+
+[https://github.com/rhash/RHash](https://github.com/rhash/RHash) - "recursive hash". Seems to emit the
+tree in an unpredictable, not-always-sorted, order.
+
+[https://www.shlomifish.org/open-source/projects/File-Dir-Dumper/](https://www.shlomifish.org/open-source/projects/File-Dir-Dumper/) - also
+on CPAN. Dumps metadata and supports caching the digests.
+
+[https://github.com/gokyle/rshasum](https://github.com/gokyle/rshasum) - written in golang, but slurps
+entire files into memory (see [https://github.com/gokyle/rshasum/issues/1](https://github.com/gokyle/rshasum/issues/1) ).
+
 # SUPPORT
 
 ## Websites
